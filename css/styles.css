@@ -1,0 +1,394 @@
+body {
+    font-family: Roboto, sans-serif;
+    font-size: 1.25em;
+    color: white;
+    background-color: transparent;
+    backdrop-filter: blur(3.5px);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background: #1B1B1B;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    height: 90%;
+    max-height: 100vh;
+    overflow: auto;
+    width: 375px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+}
+
+hr {
+    width: 95%;
+    margin-bottom: 1.5%;
+}
+
+#hr2 {
+    width: 95%;
+    margin-top: 4.5%;
+    margin-bottom: 0%;
+}
+
+h2 {
+    flex: 1;
+    text-align: center;
+    color: #00abe9;
+    font-size: 1.1em;
+    margin-bottom: 1.5%;
+}
+
+h3 {
+    flex: 1;
+    text-align: left;
+    color: white;
+    font-size: 1.6em;
+    margin-top: 2%;
+    margin-bottom: 1.7%;
+}
+
+h4 {
+    flex: 1;
+    text-align: center;
+    color: white;
+    font-size: 1.75em;
+    margin-top: 0.5%;
+    margin-bottom: 1.5%;
+}
+
+h5 {
+    flex: 1;
+    text-align: center;
+    color: white;
+    font-size: 1.9em;
+    margin-top: -1%;
+}
+
+.logo {
+    width: 125px;
+    height: auto;
+    margin-top: 7px;
+    align-items: center;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+label {
+    margin-top: 8px;
+    display: block;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+input[type="number"] {
+    height: 48px;
+}
+
+input[type="text"] {
+    height: 48px;
+}
+
+input[type="tel"] {
+    height: 48px;
+}
+
+input[type="email"] {
+    height: 48px;
+}
+
+select {
+    height: 48px;
+}
+
+#employees {
+    margin-top: 8px;
+    font-size: 12pt;
+}
+
+#workingHours {
+    margin-top: 8px;
+    font-size: 12pt;
+}
+
+#blueLight {
+    margin-top: 10px;
+    font-size: 12pt;
+}
+
+.slider-container {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.slider-label {
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+#percentageSlider {
+    width: 100%;
+    appearance: none;
+    height: 25px;
+    background: #00abe9;
+    border-radius: 6px;
+    outline: none;
+    transition: background 0.3s ease;
+}
+
+#percentageSlider:active {
+    background: #008EC6;
+}
+
+#percentageSlider::-webkit-slider-thumb {
+    appearance: none;
+    width: 17px;
+    height: 38px;
+    background-color: #565656;
+    border-radius: 25%;
+    cursor: pointer;
+}
+
+#percentageSlider::-webkit-slider-thumb:hover {
+    background-color: #4d4d4d;
+}
+
+#percentageSlider::-moz-range-thumb {
+    width: 16px;
+    height: 33px;
+    background-color: #565656;
+    border-radius: 25%;
+    cursor: pointer;
+}
+
+#percentageSlider::-moz-range-thumb:hover {
+    background-color: #4d4d4d;
+}
+
+#percentageValue {
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+#firstName {
+    margin-top: 8px;
+    font-size: 12pt;
+}
+
+#lastName {
+    margin-top: 8px;
+    font-size: 12pt;
+}
+
+#email {
+    margin-top: 8px;
+    font-size: 12pt;
+}
+
+#phone {
+    margin-top: 8px;
+    font-size: 12pt;
+}
+
+#company {
+    margin-top: 8px;
+    font-size: 12pt;
+}
+
+button, .screen-button {
+    background-color: #00abe9;
+    color: white;
+    border: none;
+    border-radius: 10%;
+    font-size: 22px;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    height: 64px;
+}
+
+#nextButton {
+    align-self: center;
+    padding: 15px;
+    font-size: 22px;
+    font-weight: bold;
+    height: auto;
+    margin-top: 10px;
+    margin-bottom: 2px;
+    width: 95%;
+    opacity: 0.5;
+    pointer-events: none;
+    border-radius: 20px;
+}
+
+#calculateButton {
+    align-self: center;
+    padding: 15px;
+    font-size: 22px;
+    font-weight: bold;
+    height: auto;
+    margin-top: 10px;
+    margin-bottom: 2px;
+    width: 95%;
+    opacity: 0.5;
+    pointer-events: none;
+    border-radius: 20px;
+}
+
+#solutionsButton {
+    align-self: center;
+    padding: 15px;
+    font-size: 22px;
+    font-weight: bold;
+    height: auto;
+    margin-top: 15px;
+    margin-bottom: 2px;
+    width: 95%;
+    border-radius: 20px;
+}
+
+button:hover, .screen-button:hover {
+    background-color: #008EC6;
+    transition: background 0.2s ease-in-out;
+}
+
+.screen-buttons {
+    display: flex;
+    gap: 8px;
+    margin-top: 11px;
+    margin-bottom: 5px;
+}
+
+.screen-button {
+    flex: 1;
+    margin: 0;
+}
+
+.selected {
+    background-color: #0079b1;
+}
+
+.hidden {
+    display: none;
+}
+
+.back-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 27px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.results-table {
+    width: 100%;
+    color: white;
+    font-size: 20px;
+}
+
+.results-table td {
+    padding: 5px;
+    width: 100%;
+}
+
+.results-table .label {
+    text-align: left;
+}
+
+.labelC {
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.1em;
+    margin-top: 1%;
+    width: 95%;
+}
+
+.results-table .value {
+    text-align: right;
+    font-weight: bold;
+    font-size: 1.05em;
+}
+
+.risk-section {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+
+.risk-section h4 {
+    margin-bottom: 10px;
+}
+
+.disclaimer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.53em;
+    line-height: 150%;
+    text-align: justify;
+    width: 95%;
+    margin-top: -13%;
+    margin-bottom: 1%;
+    margin-inline: auto;
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    width: 95%;
+    height: auto;
+    margin-top: 5%;
+}
+
+.result-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border: none;
+    border-radius: 6px;
+    margin-bottom: 5px;
+}
+
+select:required:invalid {
+    color: gray;
+}
+
+option[value=""][disabled] {
+    display: none;
+}
+
+option {
+    color: black;
+}

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Risk Calculator</title>
+</head>
+
+<body>
+    <div class="container" id="inputScreen">
+        <div class="header">
+            <img src="images/cp-eyesafe-logo.png" alt="Eyesafe Logo" class="logo">
+            <h2>SCREEN TIME RISK CALCULATOR</h2>
+        </div>
+        
+        <label for="employees">Total number of employees</label>
+        <input type="number" id="employees" placeholder="Enter number of employees" oninput="checkInputs()">
+        
+        <label>About how many screens (computers, tablets, phones, etc.) per employee?</label>
+        <div class="screen-buttons">
+            <button type="button" class="screen-button" onclick="selectScreenCount(2); checkInputs();">1</button>
+            <button type="button" class="screen-button" onclick="selectScreenCount(3); checkInputs();">2</button>
+            <button type="button" class="screen-button" onclick="selectScreenCount(4); checkInputs();">3</button>
+            <button type="button" class="screen-button" onclick="selectScreenCount(5); checkInputs();">3+</button>
+        </div>
+        
+        <label for="workingHours">How many hours per working day?</label>
+        <select required id="workingHours" onchange="checkInputs()">
+            <option value="" selected disabled>Please select</option>
+        </select>
+        
+        <label for="screenHours">Percentage of hours spent on screens</label>
+        <div class="slider-container">
+            <div class="slider-label">
+                <span id="percentageValue">0%</span>
+            </div>
+            <input type="range" id="percentageSlider" min="0" max="100" value="0" oninput="updateSliderValue(this.value); checkInputs()">
+        </div>
+        
+        <label for="blueLight">Roughly how many employees use blue light filtering products?</label>
+        <select required id="blueLight" onchange="checkInputs()">
+            <option value="" selected disabled>Please select</option>
+            <option value="5">None</option>
+            <option value="4">A few</option>
+            <option value="2">Half</option>
+            <option value="0">Most</option>
+            <option value="-3">All</option>
+        </select>
+        
+        <button type="button" id="nextButton" disabled>Next</button>
+    </div>
+    
+    <div class="container hidden" id="detailsScreen">
+        <div class="header">
+            <img src="images/cp-eyesafe-logo.png" alt="Eyesafe Logo" class="logo">
+            <button class="back-button" onclick="goBack1()">❮</button>
+            <h2>SCREEN TIME RISK CALCULATOR</h2>
+        </div>
+        
+        <label for="firstName">First Name <span style="color: red;">*</span></label>
+        <input type="text" id="firstName" placeholder="Enter your first name" required oninput="checkDetailsInputs()">
+        
+        <label for="lastName">Last Name <span style="color: red;">*</span></label>
+        <input type="text" id="lastName" placeholder="Enter your last name" required oninput="checkDetailsInputs()">
+        
+        <label for="email">Email Address <span style="color: red;">*</span></label>
+        <input type="email" id="email" placeholder="Enter your email address" required oninput="checkDetailsInputs()">
+        
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" placeholder="Enter your phone number">
+        
+        <label for="company">Company Name</label>
+        <input type="text" id="company" placeholder="Enter your company name">
+        
+        <button type="button" id="calculateButton" disabled>Calculate</button>
+    </div>
+
+    <div class="container hidden" id="resultsScreen">
+        <div class="header">
+            <img src="images/cp-eyesafe-logo.png" alt="Eyesafe Logo" class="logo">
+            <button class="back-button" onclick="goBack2()">❮</button>
+            <h2>SCREEN TIME RISK CALCULATOR</h2>
+
+            <h3>Results</h3>
+            <hr>
+            <div class="labelC">Cumulative Employee Impact</div>
+            <hr>
+        <table class="results-table">
+            <tr class="hidden">
+                <td class="label">Number of employees</td>
+                <td class="value" id="numEmployees">0</td>
+            </tr>
+            <tr>
+                <td class="label">Total number of screens</td>
+                <td class="value" id="numScreens">0</td>
+            </tr>
+            <tr>
+                <td class="label">Hours per day</td>
+                <td class="value" id="dailyScreenHours">0</td>
+            </tr>
+            <tr class="hidden">
+                <td class="label">Total hours of screen time per week</td>
+                <td class="value" id="weeklyScreenHours">0</td>
+            </tr>
+            <tr>
+                <td class="label">Hours per year</td>
+                <td class="value" id="yearlyScreenHours">0</td>
+            </tr>
+        </table>
+        <hr>
+        </div>
+        <div class="risk-section">
+            <div class="image-container">
+                <img src="" id="riskImage" class="result-image" alt="Risk Image">
+            </div>
+            <h4>Risk Score: <span id="resultValue">0</span></h4>
+            <h5><span id="resultRating">Low Risk</span></h5>
+        </div>
+        <div>
+            <i class="disclaimer">The Eyesafe® Screen Time Risk Calculator utilizes a proprietary algorithm to plot an employer’s workforce based on several dimensions of blue light exposure. There is a growing body of evidence underscored by a significant amount of academic research which confirms the impact of blue light exposure across many aspects of health and safety.</i>
+        </div>
+        <button type="button" id="solutionsButton" onclick="window.open('https://eyesafe.com/screen-protection-for-business/', '_blank')">Solutions</button>
+    </div>    
+    
+    <script>
+        function populateDropdown(id) {
+            const select = document.getElementById(id);
+            for (let i = 1; i <= 12; i++) {
+                const option = document.createElement('option');
+                option.value = i;
+                option.textContent = i;
+                select.appendChild(option);
+            }
+        }
+        populateDropdown('workingHours');
+    
+        let screenCountValue = 0;
+        let workingHoursValue = 0;
+        let percentageValue = 1;
+    
+        function selectScreenCount(count) {
+            const buttons = document.querySelectorAll('.screen-button');
+            buttons.forEach(button => button.classList.remove('selected'));
+            buttons[count - 2].classList.add('selected');
+            screenCountValue = count;
+            checkInputs();
+        }
+    
+        function updateSliderValue(value) {
+            document.getElementById('percentageValue').textContent = value + '%';
+            if (value <= 20) percentageValue = 1;
+            else if (value <= 40) percentageValue = 2;
+            else if (value <= 60) percentageValue = 3;
+            else if (value <= 80) percentageValue = 4;
+            else percentageValue = 5;
+            checkInputs();
+        }
+    
+        function checkInputs() {
+            const numEmployees = document.getElementById('employees').value;
+            const screenSelected = screenCountValue > 0;
+            const workingHoursSelected = document.getElementById('workingHours').value !== "";
+            const blueLightSelected = document.getElementById('blueLight').value !== "";
+            const sliderValueGreaterThanZero = document.getElementById('percentageSlider').value > 0;
+    
+            if (numEmployees && screenSelected && workingHoursSelected && blueLightSelected && sliderValueGreaterThanZero) {
+                document.getElementById('nextButton').disabled = false;
+                document.getElementById('nextButton').style.opacity = 1;
+                document.getElementById('nextButton').style.pointerEvents = 'auto';
+            } else {
+                document.getElementById('nextButton').disabled = true;
+                document.getElementById('nextButton').style.opacity = 0.5;
+                document.getElementById('nextButton').style.pointerEvents = 'none';
+            }
+        }
+
+        document.getElementById('nextButton').addEventListener('click', function() {
+            document.getElementById('inputScreen').classList.add('hidden');
+            document.getElementById('detailsScreen').classList.remove('hidden');
+        });
+
+        function checkDetailsInputs() {
+            const firstName = document.getElementById('firstName').value.trim();
+            const lastName = document.getElementById('lastName').value.trim();
+            const email = document.getElementById('email').value.trim();
+
+            if (firstName && lastName && email) {
+                document.getElementById('calculateButton').disabled = false;
+                document.getElementById('calculateButton').style.opacity = 1;
+                document.getElementById('calculateButton').style.pointerEvents = 'auto';
+            } else {
+                document.getElementById('calculateButton').disabled = true;
+                document.getElementById('calculateButton').style.opacity = 0.5;
+                document.getElementById('calculateButton').style.pointerEvents = 'none';
+            }
+        }
+
+        document.getElementById('calculateButton').addEventListener('click', function() {
+            const numEmployees = parseInt(document.getElementById('employees').value);
+            const workingHours = parseInt(document.getElementById('workingHours').value);
+            const blueLightValue = parseInt(document.getElementById('blueLight').value);
+            const percentage = parseInt(document.getElementById('percentageSlider').value);
+    
+            const numScreens = numEmployees * (screenCountValue - 1);
+            const dailyScreenHours = Math.round(numEmployees * workingHours * (percentage / 100));
+            const weeklyScreenHours = Math.round(dailyScreenHours * 5);
+            const yearlyScreenHours = Math.round(weeklyScreenHours * 52);
+    
+            document.getElementById('numEmployees').textContent = numEmployees.toLocaleString();
+            document.getElementById('numScreens').textContent = numScreens.toLocaleString();
+            document.getElementById('dailyScreenHours').textContent = dailyScreenHours.toLocaleString();
+            document.getElementById('weeklyScreenHours').textContent = weeklyScreenHours.toLocaleString();
+            document.getElementById('yearlyScreenHours').textContent = yearlyScreenHours.toLocaleString();
+    
+            if (workingHours >= 1 && workingHours <= 3) workingHoursValue = 1;
+            else if (workingHours >= 4 && workingHours <= 5) workingHoursValue = 2;
+            else if (workingHours >= 6 && workingHours <= 7) workingHoursValue = 3;
+            else if (workingHours >= 8 && workingHours <= 10) workingHoursValue = 4;
+            else workingHoursValue = 5;
+    
+            const totalValue = screenCountValue + workingHoursValue + percentageValue + blueLightValue;
+            document.getElementById('resultValue').textContent = totalValue;
+            document.getElementById('riskImage').src = `images/cp-hrisk${totalValue}.png`;
+            setRiskScoreColor(totalValue);
+            document.getElementById('detailsScreen').classList.add('hidden');
+            document.getElementById('resultsScreen').classList.remove('hidden');
+        });
+
+        function setRiskScoreColor(score) {
+            const resultValueElement = document.getElementById('resultValue');
+            const resultRatingElement = document.getElementById('resultRating');
+
+            if (score >= 1 && score <= 5) {
+                resultValueElement.style.color = '#68e931';
+                resultValueElement.style.fontSize = '1.15em';
+                resultRatingElement.textContent = 'Low Risk';
+                resultRatingElement.style.color = '#68e931';
+            } else if (score >= 6 && score <= 10) {
+                resultValueElement.style.color = '#e1e931';
+                resultValueElement.style.fontSize = '1.15em';
+                resultRatingElement.textContent = 'Moderate Risk';
+                resultRatingElement.style.color = '#e1e931';
+            } else if (score >= 11 && score <= 15) {
+                resultValueElement.style.color = '#e89031';
+                resultValueElement.style.fontSize = '1.15em';
+                resultRatingElement.textContent = 'High Risk';
+                resultRatingElement.style.color = '#e89031';
+            } else if (score >= 16 && score <= 20) {
+                resultValueElement.style.color = '#e93431';
+                resultValueElement.style.fontSize = '1.15em';
+                resultRatingElement.textContent = 'Severe Risk';
+                resultRatingElement.style.color = '#e93431';
+            }
+        }
+    
+        function goBack1() {
+            document.getElementById('detailsScreen').classList.add('hidden');
+            document.getElementById('inputScreen').classList.remove('hidden');
+        }
+
+        function goBack2() {
+            document.getElementById('resultsScreen').classList.add('hidden');
+            document.getElementById('detailsScreen').classList.remove('hidden');
+        }
+    
+        updateSliderValue(0);
+    </script>    
+</body>
+</html>
