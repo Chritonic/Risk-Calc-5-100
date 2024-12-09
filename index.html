@@ -221,7 +221,7 @@
             else if (workingHours >= 8 && workingHours <= 10) workingHoursValue = 4;
             else workingHoursValue = 5;
     
-            const totalValue = screenCountValue + workingHoursValue + percentageValue + blueLightValue;
+            const totalValue = (screenCountValue + workingHoursValue + percentageValue + blueLightValue) * 5;
             document.getElementById('resultValue').textContent = totalValue;
             document.getElementById('riskImage').src = `images/cp-hrisk${totalValue}.png`;
             setRiskScoreColor(totalValue);
@@ -233,22 +233,22 @@
             const resultValueElement = document.getElementById('resultValue');
             const resultRatingElement = document.getElementById('resultRating');
 
-            if (score >= 1 && score <= 5) {
+            if (score >= 5 && score <= 25) {
                 resultValueElement.style.color = '#68e931';
                 resultValueElement.style.fontSize = '1.15em';
                 resultRatingElement.textContent = 'Low Risk';
                 resultRatingElement.style.color = '#68e931';
-            } else if (score >= 6 && score <= 10) {
+            } else if (score >= 30 && score <= 50) {
                 resultValueElement.style.color = '#e1e931';
                 resultValueElement.style.fontSize = '1.15em';
                 resultRatingElement.textContent = 'Moderate Risk';
                 resultRatingElement.style.color = '#e1e931';
-            } else if (score >= 11 && score <= 15) {
+            } else if (score >= 55 && score <= 75) {
                 resultValueElement.style.color = '#e89031';
                 resultValueElement.style.fontSize = '1.15em';
                 resultRatingElement.textContent = 'High Risk';
                 resultRatingElement.style.color = '#e89031';
-            } else if (score >= 16 && score <= 20) {
+            } else if (score >= 80 && score <= 100) {
                 resultValueElement.style.color = '#e93431';
                 resultValueElement.style.fontSize = '1.15em';
                 resultRatingElement.textContent = 'Severe Risk';
