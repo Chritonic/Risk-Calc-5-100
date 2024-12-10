@@ -117,7 +117,6 @@
                 <img src="" id="riskImage" class="result-image" alt="Risk Image">
             </div>
             <h4>Risk Score: <span id="resultValue">0</span></h4>
-            <h5><span id="resultRating">Low Risk</span></h5>
         </div>
         <div>
             <i class="disclaimer">The Eyesafe® Screen Time Risk Calculator utilizes a proprietary algorithm to plot an employer’s workforce based on several dimensions of blue light exposure. There is a growing body of evidence underscored by a significant amount of academic research which confirms the impact of blue light exposure across many aspects of health and safety.</i>
@@ -231,28 +230,19 @@
 
         function setRiskScoreColor(score) {
             const resultValueElement = document.getElementById('resultValue');
-            const resultRatingElement = document.getElementById('resultRating');
 
             if (score >= 5 && score <= 25) {
                 resultValueElement.style.color = '#68e931';
                 resultValueElement.style.fontSize = '1.15em';
-                resultRatingElement.textContent = 'Low Risk';
-                resultRatingElement.style.color = '#68e931';
             } else if (score >= 30 && score <= 50) {
                 resultValueElement.style.color = '#e1e931';
                 resultValueElement.style.fontSize = '1.15em';
-                resultRatingElement.textContent = 'Moderate Risk';
-                resultRatingElement.style.color = '#e1e931';
             } else if (score >= 55 && score <= 75) {
                 resultValueElement.style.color = '#e89031';
                 resultValueElement.style.fontSize = '1.15em';
-                resultRatingElement.textContent = 'High Risk';
-                resultRatingElement.style.color = '#e89031';
             } else if (score >= 80 && score <= 100) {
                 resultValueElement.style.color = '#e93431';
                 resultValueElement.style.fontSize = '1.15em';
-                resultRatingElement.textContent = 'Severe Risk';
-                resultRatingElement.style.color = '#e93431';
             }
         }
     
