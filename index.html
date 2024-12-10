@@ -223,7 +223,7 @@
     
             const totalValue = (screenCountValue + workingHoursValue + percentageValue + blueLightValue) * 5;
             document.getElementById('resultValue').textContent = totalValue;
-            document.getElementById('riskImage').src = `images/cp-hrisk${totalValue}.png`;
+            document.getElementById('riskImage').src = `images/cp-hrisk-${totalValue}.png`;
             setRiskScoreColor(totalValue);
             document.getElementById('detailsScreen').classList.add('hidden');
             document.getElementById('resultsScreen').classList.remove('hidden');
