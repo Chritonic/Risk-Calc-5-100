@@ -2,30 +2,21 @@ body {
     font-family: Roboto, sans-serif;
     font-size: 1.25em;
     color: white;
-    background-color: transparent;
-    backdrop-filter: blur(3.5px);
-    background-size: cover;
-    background-position: center;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
+    margin: 0 auto;
 }
 
 .container {
     background: #1B1B1B;
-    border-radius: 10px;
     padding: 20px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    height: 90%;
-    max-height: 100vh;
-    overflow: auto;
+    height: 95.6vh;
+    overflow: clip;
     width: 375px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    position: relative;
 }
 
 hr {
@@ -43,7 +34,7 @@ h2 {
     flex: 1;
     text-align: center;
     color: #00abe9;
-    font-size: 1.1em;
+    font-size: 1.05em;
     margin-bottom: 1.5%;
 }
 
@@ -65,10 +56,18 @@ h4 {
     margin-bottom: 1.5%;
 }
 
+h5 {
+    flex: 1;
+    text-align: center;
+    color: white;
+    font-size: 1.9em;
+    margin-top: -1%;
+}
+
 .logo {
     width: 125px;
     height: auto;
-    margin-top: 7px;
+    margin-top: 1.5%;
     align-items: center;
 }
 
@@ -76,6 +75,7 @@ h4 {
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
 }
 
 label {
@@ -94,49 +94,49 @@ input, select {
 }
 
 input[type="number"] {
-    height: 48px;
+    height: 5%;
 }
 
 input[type="text"] {
-    height: 48px;
+    height: 5%;
 }
 
 input[type="tel"] {
-    height: 48px;
+    height: 5%;
 }
 
 input[type="email"] {
-    height: 48px;
+    height: 5%;
 }
 
 select {
-    height: 48px;
+    height: 5%;
 }
 
 #employees {
-    margin-top: 8px;
-    font-size: 12pt;
+    margin-top: 0.8%;
+    font-size: 0.8em;
 }
 
 #workingHours {
-    margin-top: 8px;
-    font-size: 12pt;
+    margin-top: 0.8%;
+    font-size: 0.8em;
 }
 
 #blueLight {
-    margin-top: 10px;
-    font-size: 12pt;
+    margin-top: 0.8%;
+    font-size: 0.8em;
 }
 
 .slider-container {
-    margin-top: 10px;
-    margin-bottom: 5px;
+    margin-top: 1%;
+    margin-bottom: 0.5%;
     text-align: center;
 }
 
 .slider-label {
     text-align: center;
-    margin-bottom: 5px;
+    margin-bottom: 0.5%;
 }
 
 #percentageSlider {
@@ -180,32 +180,37 @@ select {
 
 #percentageValue {
     font-weight: bold;
-    margin-left: 5px;
+    margin-left: 2%;
 }
 
 #firstName {
-    margin-top: 8px;
-    font-size: 12pt;
+    margin-top: -5%;
+    margin-bottom: 0%;
+    font-size: 0.8em;
 }
 
 #lastName {
-    margin-top: 8px;
-    font-size: 12pt;
+    margin-top: -5%;
+    margin-bottom: 0%;
+    font-size: 0.8em;
 }
 
 #email {
-    margin-top: 8px;
-    font-size: 12pt;
+    margin-top: -5%;
+    margin-bottom: 0%;
+    font-size: 0.8em;
 }
 
 #phone {
-    margin-top: 8px;
-    font-size: 12pt;
+    margin-top: -5%;
+    margin-bottom: 0%;
+    font-size: 0.8em;
 }
 
 #company {
-    margin-top: 8px;
-    font-size: 12pt;
+    margin-top: -5%;
+    margin-bottom: 0%;
+    font-size: 0.8em;
 }
 
 button, .screen-button {
@@ -226,7 +231,7 @@ button, .screen-button {
     font-size: 22px;
     font-weight: bold;
     height: auto;
-    margin-top: 10px;
+    margin-top: 7px;
     margin-bottom: 2px;
     width: 95%;
     opacity: 0.5;
@@ -240,7 +245,7 @@ button, .screen-button {
     font-size: 22px;
     font-weight: bold;
     height: auto;
-    margin-top: 10px;
+    margin-top: 7px;
     margin-bottom: 2px;
     width: 95%;
     opacity: 0.5;
@@ -287,8 +292,8 @@ button:hover, .screen-button:hover {
 
 .back-button {
     position: absolute;
-    top: 10px;
-    left: 10px;
+    top: 3px;
+    left: 0px;
     width: 40px;
     height: 40px;
     display: flex;
@@ -296,11 +301,9 @@ button:hover, .screen-button:hover {
     justify-content: center;
     background: transparent;
     border: none;
-    border-radius: 5px;
     color: white;
-    font-size: 27px;
+    font-size: 30px;
     cursor: pointer;
-    margin-top: 10px;
 }
 
 .results-table {
@@ -350,8 +353,8 @@ button:hover, .screen-button:hover {
     line-height: 150%;
     text-align: justify;
     width: 95%;
-    margin-top: 7%;
-    margin-bottom: 0%;
+    margin-top: -13%;
+    margin-bottom: 1%;
     margin-inline: auto;
 }
 
@@ -361,7 +364,7 @@ button:hover, .screen-button:hover {
     align-self: center;
     width: 95%;
     height: auto;
-    margin-top: 12%;
+    margin-top: 5%;
 }
 
 .result-image {
